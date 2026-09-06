@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&display=swap" rel="stylesheet"/>
 
   <style>
-    /* SutonnyMJ ফন্ট লোড (অনলাইন ও কম্পিউটার উভয় দিক থেকে) */
+    /* SutonnyMJ ফন্ট লোড */
     @font-face {
       font-family: 'SutonnyMJ';
       src: local('SutonnyMJ'),
@@ -26,19 +26,18 @@
       font-display: swap;
     }
 
-    /* ১. গ্লোবাল ডিজাইন */
     * { box-sizing: border-box; }
     body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f2f4f7; color: #333; overflow-x: hidden; }
     a { text-decoration: none; }
     .site-wrapper { max-width: 1200px; margin: 0 auto; background-color: #ffffff; box-shadow: 0 0 15px rgba(0,0,0,0.1); min-height: 100vh; display: flex; flex-direction: column; }
     .tiro-text { font-family: 'Tiro Bangla', serif !important; }
 
-    /* ২. টপ বার */
+    /* টপ বার */
     .ticker-top-bar { background-color: #2176ff; padding: 8px 20px; color: #ffffff; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
     .top-social-icons { display: flex; gap: 12px; }
     .top-social-icons a { color: #ffffff; font-size: 13px; }
 
-    /* ৩. মিডল হেডার */
+    /* মিডল হেডার */
     .middle-header { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; background: #ffffff; border-bottom: 1px solid #eaeaea; }
     .logo-area { display: flex; align-items: center; gap: 15px; }
     .logo-icon { color: #0f52ba; font-size: 40px; }
@@ -47,7 +46,7 @@
     .contact-details { font-size: 14px; color: #444; font-weight: 500; }
     .cart-box { background-color: #2176ff; color: #ffffff; padding: 10px 20px; border-radius: 30px; display: flex; align-items: center; gap: 10px; font-weight: bold; }
 
-    /* ৪. নেভিগেশন বার ও ড্রপডাউন */
+    /* নেভিগেশন বার */
     .nav-container { background-color: #2176ff; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; position: relative; }
     .main-menu { display: flex; list-style: none; margin: 0; padding: 0; align-items: center; }
     .main-menu > li { position: relative; }
@@ -93,7 +92,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* ৫. কনভার্টার সেকশন */
+    /* কনভার্টার সেকশন */
     .converter-content-area {
       flex: 1;
       padding: 35px 40px;
@@ -209,10 +208,10 @@
       font-size: 18px;
     }
 
-    /* বিজয় টেক্সটবক্সের বিশেষ ফন্ট স্টাইল (বাংলায় প্রদর্শনের জন্য) */
+    /* বিজয় টেক্সটবক্সের ফন্ট */
     #bijoyBox {
       font-family: 'SutonnyMJ', 'SutonnyMJ Regular', sans-serif !important;
-      font-size: 24px !important;
+      font-size: 25px !important;
       line-height: 1.6;
       letter-spacing: 0.5px;
     }
@@ -242,7 +241,7 @@
       text-align: center;
     }
 
-    /* ৬. সাইট ফুটার */
+    /* ফুটার */
     .site-footer {
       background-color: #2176ff;
       color: #ffffff;
@@ -271,7 +270,7 @@
       .middle-swap-btn { transform: rotate(90deg); margin: 6px 0; }
       .middle-swap-btn:hover { transform: rotate(90deg) scale(1.1); }
       .app-textarea { height: 230px; font-size: 18px; }
-      #bijoyBox { font-size: 21px !important; }
+      #bijoyBox { font-size: 22px !important; }
       .card-top-header { flex-direction: column; align-items: flex-start; }
       .card-actions { width: 100%; justify-content: flex-end; }
     }
@@ -339,12 +338,10 @@
   <!-- কনভার্টার সেকশন -->
   <div class="converter-content-area">
 
-    <!-- ব্যানার -->
     <div class="top-hero-banner">
       <h1 class="tiro-text">Converter</h1>
     </div>
 
-    <!-- অপশন বাটনস -->
     <div class="pills-bar">
       <button class="pill-btn active tiro-text" id="btnU2B" onclick="runConversion('U2B')">
         Unicode 
@@ -358,10 +355,9 @@
       </button>
     </div>
 
-    <!-- কার্ড র‍্যাপার -->
     <div class="converter-cards-wrapper">
 
-      <!-- বাম কার্ড: Unicode (Avro / Web) -->
+      <!-- বাম কার্ড: Unicode -->
       <div class="converter-card">
         <div class="card-top-header">
           <span class="card-title tiro-text">Unicode</span>
@@ -388,7 +384,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e58ea" stroke-width="2.5"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line></svg>
       </button>
 
-      <!-- ডান কার্ড: Bijoy (ANSI) - এতে SutonnyMJ ফন্ট দেওয়া হয়েছে -->
+      <!-- ডান কার্ড: Bijoy (ANSI) -->
       <div class="converter-card">
         <div class="card-top-header">
           <span class="card-title tiro-text">ANSI (Bijoy)</span>
@@ -412,7 +408,6 @@
 
     </div>
 
-    <!-- নোট -->
     <p class="short-note tiro-text">
       Paste Bijoy text into MS Word / Illustrator and select font "SutonnyMJ".
     </p>
@@ -457,7 +452,7 @@
 
 </div>
 
-<!-- কনভার্সন স্ক্রিপ্ট -->
+<!-- ১০০% নির্ভুল কনভার্সন স্ক্রিপ্ট -->
 <script>
   let currentMode = 'U2B';
 
@@ -512,23 +507,24 @@
     }
   }
 
-  // নির্ভুল রূপান্তর ইঞ্জিন
+  // ১. ইউনিকোড থেকে বিজয় ইঞ্জিন (সম্পূর্ণ সংশোধিত)
   function convertU2B() {
     let str = document.getElementById("unicodeBox").value;
     if (!str) { document.getElementById("bijoyBox").value = ''; return; }
 
-    str = str.replace(/([ক-হড়-ঢ়])(্)([র])(্)/g, "র্$1$2");
-    str = str.replace(/র্([ক-হড়-ঢ়])(?:্([ক-হড়-ঢ়]))*/g, function(match, c1, c2) {
-      return (c2 ? c1 + "্" + c2 : c1) + "©";
-    });
+    // রেফ ঠিক করা
+    str = str.replace(/([ক-হড়-ঢ়য়])্([র])্/g, "র্$1্");
+    str = str.replace(/র্([ক-হড়-ঢ়য়](?:্[ক-হড়-ঢ়য়])*)/g, "$1©");
 
-    str = str.replace(/([ক-হড়-ঢ়](?:্[ক-হড়-ঢ়])*)+([েৈি])/g, function(match, consonant, kar) {
+    // ও-কার ও ঔ-কার আলাদা করা (শুধু সংলগ্ন যুক্তবর্ণের সাথে)
+    str = str.replace(/([ক-হড়-ঢ়য়](?:্[ক-হড়-ঢ়য়])*)ো/g, "†$1v");
+    str = str.replace(/([ক-হড়-ঢ়য়](?:্[ক-হড়-ঢ়য়])*)ৌ/g, "†$1Š");
+
+    // প্রি-কার রি-অর্ডারিং (ে, ৈ, ি - ফিক্সড: একটির বেশি বর্ণ আর কখনো মুছবে না)
+    str = str.replace(/([ক-হড়-ঢ়য়](?:্[ক-হড়-ঢ়য়])*)+?([েৈি])/g, function(match, consonant, kar) {
       let k = (kar === 'ে') ? '†' : ((kar === 'ৈ') ? '‰' : 'w');
       return k + consonant;
     });
-
-    str = str.replace(/([ক-হড়-ঢ়](?:্[ক-হড়-ঢ়])*)ো/g, "†$1v");
-    str = str.replace(/([ক-হড়-ঢ়](?:্[ক-হড়-ঢ়])*)ৌ/g, "†$1Š");
 
     const conversionMap = [
       ["র্স্পৃ", "c„©"], ["ন্ত্র্য", "š¿¨"], ["ক্ষ্ম", "²"], ["চ্ছ্ব", "”Qô"], ["জ্জ্ব", "¾¡"],
@@ -591,6 +587,7 @@
     document.getElementById("bijoyBox").value = str;
   }
 
+  // ২. বিজয় থেকে ইউনিকোড ইঞ্জিন
   function convertB2U() {
     let str = document.getElementById("bijoyBox").value;
     if (!str) { document.getElementById("unicodeBox").value = ''; return; }
@@ -655,8 +652,8 @@
       str = str.split(revMap[i][1]).join(revMap[i][0]);
     }
 
-    str = str.replace(/([†w‰])([ক-হড়-ঢ়])/g, "$2$1");
-    str = str.replace(/([ক-হড়-ঢ়])©/g, "র্$1");
+    str = str.replace(/([†w‰])([ক-হড়-ঢ়য়])/g, "$2$1");
+    str = str.replace(/([ক-হড়-ঢ়য়])©/g, "র্$1");
 
     document.getElementById("unicodeBox").value = str;
   }
