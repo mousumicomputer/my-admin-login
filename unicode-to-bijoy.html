@@ -1,187 +1,458 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unicode to Bijoy (ANSI) Converter - Mousumi Computer</title>
+  <title>Unicode to Bijoy Converter - Mousumi Computer</title>
   <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEifAQVAOjeF0ccNQdBRY2gpfOlc19vjYbQiNjCUUJ9jJqxHEjVJB7nhST4fbzYcdaaV3DtoBrxxrhi4nQJsuwHoWnEmQKud8muKsZIRcWV6YgFLEmdsDc8TRv8Vcmw5jktkvXt4cnlRnbxOW8MlFzlJ4P7QSA7E1Owl9bxDsaW7wjMJQ91bdczQa5zjxu94/s1600/Screenshot_1.jpg">
   
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+  <!-- Tiro Bangla Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&display=swap" rel="stylesheet"/>
 
   <style>
-    body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f2f4f7; color: #333; overflow-x: hidden; }
-    a { text-decoration: none; }
-    .site-wrapper { max-width: 1200px; margin: 0 auto; background-color: #ffffff; box-shadow: 0 0 15px rgba(0,0,0,0.1); min-height: 100vh; display: flex; flex-direction: column; }
-    .tiro-text { font-family: 'Tiro Bangla', serif !important; }
+    /* SutonnyMJ অনলাইন ওয়েব-ফন্ট (লাইভ ওয়েবসাইটে স্বয়ংক্রিয় বাংলা লোড হবে) */
+    @font-face {
+      font-family: 'SutonnyMJ';
+      src: url('https://cdn.jsdelivr.net/gh/farhadm/bangla-fonts@master/SutonnyMJ.woff') format('woff'),
+           url('https://cdn.jsdelivr.net/gh/maateen/bangla-fonts/dist/SutonnyMJ/SutonnyMJ.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
 
-    /* টপ বার */
-    .ticker-top-bar { background-color: #2176ff; padding: 8px 20px; color: #ffffff; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
-    .middle-header { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; background: #ffffff; border-bottom: 1px solid #eaeaea; }
-    .logo-area { display: flex; align-items: center; gap: 15px; }
-    .logo-icon { color: #0f52ba; font-size: 40px; }
-    .logo-text h1 { margin: 0; font-size: 28px; color: #003366; font-weight: bold; }
-    .logo-text p { margin: 0; font-size: 26px; color: #2e8b57; font-weight: bold; line-height: 1; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tiro Bangla', serif;
+    }
 
-    /* মেনু বার */
-    .nav-container { background-color: #2176ff; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; position: relative; }
-    .main-menu { display: flex; list-style: none; margin: 0; padding: 0; align-items: center; }
-    .main-menu > li > a { color: #ffffff; display: block; padding: 15px 18px; font-size: 15px; font-weight: 500; }
-    .dropdown { position: relative; }
-    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #ffffff; min-width: 210px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); border-radius: 0 0 8px 8px; list-style: none; padding: 8px 0; margin: 0; z-index: 1000; }
-    .dropdown-menu li a { color: #333; padding: 10px 18px; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
-    .dropdown-menu li a:hover { background-color: #f0f5ff; color: #2176ff; }
-    .dropdown:hover .dropdown-menu { display: block; }
-    .nav-admin-btn { background: linear-gradient(135deg, #0d233a 0%, #1a3a5c 100%); color: #ffffff !important; padding: 8px 18px !important; border-radius: 50px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
+    body {
+      background-color: #f1f5f9;
+      color: #1e293b;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
 
-    /* কনভার্টার সেকশন */
-    .converter-container { flex: 1; padding: 35px 25px; max-width: 1050px; margin: 0 auto; width: calc(100% - 50px); }
-    .page-title { text-align: center; margin-bottom: 20px; }
-    .page-title h2 { color: #003366; font-size: 26px; margin-bottom: 6px; }
+    .main-app-container {
+      width: 100%;
+      max-width: 950px;
+      display: flex;
+      flex-direction: column;
+    }
 
-    .controls-wrapper { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
-    .btn-convert { background: #2176ff; color: #ffffff; border: none; padding: 12px 28px; font-size: 15px; font-weight: bold; border-radius: 30px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(33, 118, 255, 0.3); transition: 0.2s; }
-    .btn-convert:hover { background: #0056d6; transform: translateY(-1px); }
-    .btn-convert-reverse { background: #2e8b57; box-shadow: 0 4px 12px rgba(46, 139, 87, 0.3); }
-    .btn-convert-reverse:hover { background: #226740; }
+    /* নেভিগেশন / হোম বাটন */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding: 5px 10px;
+    }
+    .nav-brand {
+      font-size: 20px;
+      font-weight: bold;
+      color: #0d254c;
+    }
+    .nav-link {
+      text-decoration: none;
+      color: #1e58ea;
+      font-size: 16px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .nav-link:hover {
+      text-decoration: underline;
+    }
 
-    .converter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .converter-card { background: #ffffff; border: 1px solid #d9e2ec; border-radius: 10px; padding: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
-    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .card-header h3 { margin: 0; font-size: 17px; color: #003366; }
-    
-    .converter-textarea { width: 100%; height: 230px; box-sizing: border-box; border: 1px solid #ccd6e0; border-radius: 6px; padding: 12px; font-size: 16px; resize: vertical; outline: none; }
-    .converter-textarea:focus { border-color: #2176ff; }
-    .bijoy-box-style { font-family: 'Consolas', 'Courier New', monospace; font-size: 15px; }
+    /* ১. টপ ব্যানার (মৌসুমি রয়্যাল ব্লু গ্র্যাডিয়েন্ট) */
+    .top-hero-banner {
+      background: linear-gradient(135deg, #0d254c 0%, #1e58ea 100%);
+      border-radius: 20px;
+      padding: 22px 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(13, 37, 76, 0.22);
+    }
 
-    .action-btn-bar { display: flex; gap: 10px; margin-top: 10px; }
-    .btn-action { background: #f0f4f8; border: 1px solid #cbd5e1; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; color: #334155; }
-    .btn-action:hover { background: #e2e8f0; }
+    .top-hero-banner h1 {
+      color: #ffffff;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
 
-    .note-box { background: #eff6ff; border-left: 4px solid #2176ff; padding: 14px 18px; border-radius: 4px; margin-top: 25px; font-size: 13.5px; color: #1e3a8a; line-height: 1.6; }
+    /* ২. অপশন বাটনস (Pills) */
+    .pills-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
 
-    .site-footer { background-color: #2176ff; color: #ffffff; padding: 25px 30px; margin-top: auto; text-align: center; }
+    .pill-btn {
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+    }
+
+    .pill-btn.active {
+      background: linear-gradient(135deg, #0d254c 0%, #1e58ea 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(30, 88, 234, 0.25);
+    }
+
+    .pill-btn.inactive {
+      background: #e2e8f0;
+      color: #475569;
+    }
+
+    .pill-btn.inactive:hover {
+      background: #cbd5e1;
+    }
+
+    /* ৩. কার্ড র‍্যাপার */
+    .converter-cards-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+    }
+
+    .converter-card {
+      flex: 1;
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* কার্ডের রয়্যাল হেডার */
+    .card-top-header {
+      background: linear-gradient(90deg, #133975 0%, #1e58ea 100%);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .card-title {
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* হেডার বাটনসমূহ (Clear, Copy, Paste) */
+    .btn-action-pill {
+      background: #ffffff;
+      border: none;
+      color: #0d254c;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-action-pill:hover {
+      background: #f0f6ff;
+      transform: translateY(-1px);
+    }
+
+    .btn-action-pill svg {
+      stroke: #1e58ea;
+    }
+
+    /* টেক্সটবক্স */
+    .app-textarea {
+      width: 100%;
+      height: 380px;
+      border: none;
+      padding: 18px;
+      font-size: 21px;
+      line-height: 1.6;
+      outline: none;
+      resize: none;
+      color: #1e293b;
+      background-color: #ffffff;
+    }
+
+    .bijoy-font {
+      font-family: 'SutonnyMJ', 'Tiro Bangla', sans-serif !important;
+      font-size: 24px !important;
+    }
+
+    .app-textarea::placeholder {
+      font-family: 'Tiro Bangla', serif !important;
+      color: #94a3b8;
+      font-size: 18px;
+    }
+
+    /* মাঝখানের সোয়াপ বাটন */
+    .middle-swap-btn {
+      background: #ffffff;
+      border: 2px solid #1e58ea;
+      color: #1e58ea;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(30, 88, 234, 0.15);
+      transition: 0.2s;
+      flex-shrink: 0;
+    }
+
+    .middle-swap-btn:hover {
+      background: #1e58ea;
+      transform: scale(1.1);
+    }
+
+    .middle-swap-btn:hover svg {
+      stroke: #ffffff;
+    }
+
+    /* এক লাইনের মিনিমাল নোট */
+    .short-note {
+      margin-top: 20px;
+      font-size: 15px;
+      color: #64748b;
+      text-align: center;
+    }
+
+    /* মিনিমাল ফুটার */
+    .app-footer {
+      margin-top: auto;
+      padding-top: 25px;
+      padding-bottom: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    /* মোবাইল রেসপন্সিভনেস */
+    @media (max-width: 768px) {
+      .converter-cards-wrapper {
+        flex-direction: column;
+      }
+      .middle-swap-btn {
+        transform: rotate(90deg);
+        margin: 6px 0;
+      }
+      .middle-swap-btn:hover {
+        transform: rotate(90deg) scale(1.1);
+      }
+      .app-textarea {
+        height: 250px;
+        font-size: 19px;
+      }
+      .card-top-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .card-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
   </style>
 </head>
 <body>
 
-<div class="site-wrapper">
-  <div class="ticker-top-bar">
-    <span class="tiro-text">নির্ভুল ইউনিকোড এবং বিজয় ফন্ট কনভার্টার - মৌসুমি কম্পিউটার</span>
-    <span>+8801608314552</span>
+<div class="main-app-container">
+
+  <!-- নেভিগেশন বার -->
+  <div class="nav-bar">
+    <span class="nav-brand">Mousumi Computer</span>
+    <a href="index.html" class="nav-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      Home
+    </a>
   </div>
 
-  <div class="middle-header">
-    <div class="logo-area">
-      <div class="logo-icon"><i class="fa-solid fa-desktop"></i></div>
-      <div class="logo-text">
-        <h1 class="tiro-text">Mousumi</h1>
-        <p class="tiro-text">Computer</p>
-      </div>
-    </div>
+  <!-- ১. টপ ব্যানার -->
+  <div class="top-hero-banner">
+    <h1>Converter</h1>
   </div>
 
-  <div class="nav-container">
-    <ul class="main-menu">
-      <li><a href="index.html">Home</a></li>
-      <li class="dropdown">
-        <a href="javascript:void(0);">Converter <i class="fa-solid fa-chevron-down" style="font-size: 11px;"></i></a>
-        <ul class="dropdown-menu">
-          <li><a href="unicode-to-bijoy.html"><i class="fa-solid fa-arrows-rotate"></i> Unicode to Bijoy</a></li>
-          <li><a href="case-converter.html"><i class="fa-solid fa-font"></i> Case Converter</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Contact Us</a></li>
-    </ul>
-    <a href="admin.html" class="nav-admin-btn"><i class="fa-solid fa-user-shield"></i> Admin Login</a>
+  <!-- ২. অপশন বাটনস -->
+  <div class="pills-bar">
+    <button class="pill-btn active" id="btnU2B" onclick="runConversion('U2B')">
+      Unicode 
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line></svg> 
+      ANSI (Bijoy)
+    </button>
+    <button class="pill-btn inactive" id="btnB2U" onclick="runConversion('B2U')">
+      ANSI (Bijoy) 
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line></svg> 
+      Unicode
+    </button>
   </div>
 
-  <div class="converter-container">
-    <div class="page-title">
-      <h2 class="tiro-text"><i class="fa-solid fa-arrow-right-arrow-left" style="color: #2176ff;"></i> ইউনিকোড ⇄ বিজয় কনভার্টার</h2>
-      <p class="tiro-text">১০০% নির্ভুল যুক্তবর্ণ এবং মাত্রাহীন এ-কার সহ বিজয় (SutonnyMJ) ফরম্যাটে রূপান্তর করুন</p>
-    </div>
+  <!-- ৩. দুটি মূল কার্ড -->
+  <div class="converter-cards-wrapper">
 
-    <div class="controls-wrapper">
-      <button class="btn-convert tiro-text" onclick="convertU2B()">
-        ইউনিকোড ➔ বিজয় (ANSI) <i class="fa-solid fa-arrow-right"></i>
-      </button>
-      <button class="btn-convert btn-convert-reverse tiro-text" onclick="convertB2U()">
-        <i class="fa-solid fa-arrow-left"></i> বিজয় ➔ ইউনিকোড
-      </button>
-    </div>
-
-    <div class="converter-grid">
-      <!-- ইউনিকোড ইনপুট -->
-      <div class="converter-card">
-        <div class="card-header">
-          <h3 class="tiro-text"><i class="fa-solid fa-keyboard" style="color:#2176ff;"></i> ইউনিকোড টেক্সট (Avro/Web)</h3>
-        </div>
-        <textarea id="unicodeBox" class="converter-textarea tiro-text" placeholder="এখানে ইউনিকোড লেখা পেস্ট করুন..."></textarea>
-        <div class="action-btn-bar">
-          <button class="btn-action" onclick="copyValue('unicodeBox')"><i class="fa-regular fa-copy"></i> কপি করুন</button>
-          <button class="btn-action" onclick="document.getElementById('unicodeBox').value=''"><i class="fa-solid fa-trash-can"></i> মুছুন</button>
+    <!-- বাম কার্ড: Unicode -->
+    <div class="converter-card">
+      <div class="card-top-header">
+        <span class="card-title">Unicode</span>
+        <div class="card-actions">
+          <button class="btn-action-pill" onclick="clearText('unicodeBox')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Clear
+          </button>
+          <button class="btn-action-pill" onclick="copyText('unicodeBox')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            Copy
+          </button>
+          <button class="btn-action-pill" onclick="pasteText('unicodeBox')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1"></rect></svg>
+            Paste
+          </button>
         </div>
       </div>
+      <textarea id="unicodeBox" class="app-textarea" placeholder="Type or paste Unicode text here..." oninput="autoConvert()"></textarea>
+    </div>
 
-      <!-- বিজয় আউটপুট -->
-      <div class="converter-card">
-        <div class="card-header">
-          <h3 class="tiro-text"><i class="fa-solid fa-font" style="color:#2e8b57;"></i> বিজয় / SutonnyMJ টেক্সট</h3>
-        </div>
-        <textarea id="bijoyBox" class="converter-textarea bijoy-box-style" placeholder="এখানে বিজয়ের কোড আসবে..."></textarea>
-        <div class="action-btn-bar">
-          <button class="btn-action" onclick="copyValue('bijoyBox')"><i class="fa-regular fa-copy"></i> কপি করুন</button>
-          <button class="btn-action" onclick="document.getElementById('bijoyBox').value=''"><i class="fa-solid fa-trash-can"></i> মুছুন</button>
+    <!-- মাঝের সোয়াপ বাটন -->
+    <button class="middle-swap-btn" title="Convert / Swap" onclick="triggerSwap()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e58ea" stroke-width="2.5"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line></svg>
+    </button>
+
+    <!-- ডান কার্ড: Bijoy (ANSI) -->
+    <div class="converter-card">
+      <div class="card-top-header">
+        <span class="card-title">ANSI (Bijoy)</span>
+        <div class="card-actions">
+          <button class="btn-action-pill" onclick="clearText('bijoyBox')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Clear
+          </button>
+          <button class="btn-action-pill" onclick="copyText('bijoyBox')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            Copy
+          </button>
+          <button class="btn-action-pill" onclick="pasteText('bijoyBox')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1"></rect></svg>
+            Paste
+          </button>
         </div>
       </div>
+      <textarea id="bijoyBox" class="app-textarea bijoy-font" placeholder="Converted Bijoy text appears here..."></textarea>
     </div>
 
-    <div class="note-box tiro-text">
-      <strong><i class="fa-solid fa-circle-check"></i> ব্যবহারের নিয়ম:</strong> 
-      ডানপাশের বক্স থেকে <strong>"কপি করুন"</strong> বাটনে ক্লিক করে লেখাটি Microsoft Word বা Adobe Illustrator-এ পেস্ট করে ফন্ট <strong>SutonnyMJ</strong> সিলেক্ট করুন। কোনো অক্ষর ভাঙবে না এবং এ-কারের মাথায় কোনো অপ্রয়োজনীয় দাগ/মাত্রা থাকবে না।
-    </div>
   </div>
 
-  <footer class="site-footer">
-    &copy; ২০২৬ মৌসুমি কম্পিউটার - সর্বস্বত্ব সংরক্ষিত।
+  <!-- ১ লাইনের শর্ট নোট -->
+  <p class="short-note">
+    Paste Bijoy text into MS Word / Illustrator and select font "SutonnyMJ".
+  </p>
+
+  <!-- ফুটার -->
+  <footer class="app-footer">
+    &copy; 2026 Mousumi Computer. All Rights Reserved.
   </footer>
+
 </div>
 
-<!-- ফুল অ্যালগরিদম ও গ্রামাটিক্যাল ইঞ্জিন -->
+<!-- কনভার্সন স্ক্রিপ্ট -->
 <script>
-  function copyValue(id) {
+  let currentMode = 'U2B';
+
+  function runConversion(mode) {
+    currentMode = mode;
+    const btnU2B = document.getElementById('btnU2B');
+    const btnB2U = document.getElementById('btnB2U');
+    
+    if(mode === 'U2B') {
+      btnU2B.className = 'pill-btn active';
+      btnB2U.className = 'pill-btn inactive';
+      convertU2B();
+    } else {
+      btnU2B.className = 'pill-btn inactive';
+      btnB2U.className = 'pill-btn active';
+      convertB2U();
+    }
+  }
+
+  function autoConvert() {
+    if(currentMode === 'U2B') {
+      convertU2B();
+    }
+  }
+
+  function triggerSwap() {
+    if(currentMode === 'U2B') {
+      runConversion('B2U');
+    } else {
+      runConversion('U2B');
+    }
+  }
+
+  function clearText(id) {
+    document.getElementById(id).value = '';
+  }
+
+  function copyText(id) {
     const el = document.getElementById(id);
     if (!el.value) return;
     el.select();
-    navigator.clipboard.writeText(el.value).then(() => {
-      alert("লেখা সফলভাবে কপি হয়েছে!");
-    });
+    navigator.clipboard.writeText(el.value);
   }
 
-  // ১. ইউনিকোড থেকে বিজয় রূপান্তর ইঞ্জিন
+  async function pasteText(id) {
+    try {
+      const text = await navigator.clipboard.readText();
+      document.getElementById(id).value = text;
+      autoConvert();
+    } catch (err) {
+      alert('Please allow clipboard paste permission');
+    }
+  }
+
+  // নির্ভুল রূপান্তর ইঞ্জিন
   function convertU2B() {
     let str = document.getElementById("unicodeBox").value;
-    if (!str) return;
+    if (!str) { document.getElementById("bijoyBox").value = ''; return; }
 
-    // রেফ রি-পজিশনিং (র্ + ক -> ক©)
     str = str.replace(/([ক-হড়-ঢ়])(্)([র])(্)/g, "র্$1$2");
     str = str.replace(/র্([ক-হড়-ঢ়])(?:্([ক-হড়-ঢ়]))*/g, function(match, c1, c2) {
       return (c2 ? c1 + "্" + c2 : c1) + "©";
     });
 
-    // প্রি-কার রি-অর্ডারিং (ে, ৈ, ি বর্ণের পূর্বে নিয়ে যাওয়া)
-    // মাত্রাহীন এ-কার নিশ্চিত করতে '†' ব্যবহার করা হয়েছে
     str = str.replace(/([ক-হড়-ঢ়](?:্[ক-হড়-ঢ়])*)+([েৈি])/g, function(match, consonant, kar) {
       let k = (kar === 'ে') ? '†' : ((kar === 'ৈ') ? '‰' : 'w');
       return k + consonant;
     });
 
-    // ও-কার ও ঔ-কার আলাদা করা
     str = str.replace(/([ক-হড়-ঢ়](?:্[ক-হড়-ঢ়])*)ো/g, "†$1v");
     str = str.replace(/([ক-হড়-ঢ়](?:্[ক-হড়-ঢ়])*)ৌ/g, "†$1Š");
 
-    // যুক্তবর্ণ ও একক বর্ণের ম্যাপিং টেবিল
     const conversionMap = [
       ["র্স্পৃ", "c„©"], ["ন্ত্র্য", "š¿¨"], ["ক্ষ্ম", "²"], ["চ্ছ্ব", "”Qô"], ["জ্জ্ব", "¾¡"],
       ["জ্ঞ", "Á"], ["ন্ধ্য", "Ü¨"], ["ন্ধ্র", "Üª"], ["ম্প্র", "¤cÖ"], ["ম্ব্র", "¤^Ö"],
@@ -219,12 +490,8 @@
       ["হ্ণ", "nè"], ["হ্ন", "ý"], ["হ্ব", "nŸ"], ["হ্ম", "þ"], ["হ্য", "n¨"],
       ["হ্র", "nª"], ["হ্ল", "n¬"], ["হু", "û"], ["হৃ", "ü"], ["রু", "iæ"],
       ["রূ", "iƒ"], ["শু", "ï"], ["গু", "¸"],
-
-      // স্বরবর্ণ
       ["অ", "A"], ["আ", "Av"], ["ই", "B"], ["ঈ", "C"], ["উ", "D"], ["ঊ", "E"],
       ["ঋ", "F"], ["এ", "G"], ["ঐ", "H"], ["ও", "I"], ["ঔ", "J"],
-
-      // ব্যঞ্জনবর্ণ
       ["ক", "K"], ["খ", "L"], ["গ", "M"], ["ঘ", "N"], ["ঙ", "O"],
       ["চ", "P"], ["ছ", "Q"], ["জ", "R"], ["ঝ", "S"], ["ঞ", "T"],
       ["ট", "U"], ["ঠ", "V"], ["ড", "W"], ["ঢ", "X"], ["ণ", "Y"],
@@ -233,13 +500,9 @@
       ["য", "h"], ["র", "i"], ["ল", "j"], ["শ", "k"], ["ষ", "l"],
       ["স", "m"], ["হ", "n"], ["ড়", "o"], ["ঢ়", "p"], ["য়", "q"],
       ["ৎ", "r"], ["ং", "s"], ["ঃ", "t"], ["ঁ", "u"],
-
-      // কারসমূহ
       ["া", "v"], ["ি", "w"], ["ী", "x"], ["ু", "y"], ["ূ", "~"],
       ["ৃ", "„"], ["ে", "†"], ["ৈ", "‰"], ["ৌ", "Š"], ["্", "&"],
       ["্য", "¨"], ["্র", "ª"],
-
-      // সংখ্যা
       ["০", "0"], ["১", "1"], ["২", "2"], ["৩", "3"], ["৪", "4"],
       ["৫", "5"], ["৬", "6"], ["৭", "7"], ["৮", "8"], ["৯", "9"]
     ];
@@ -251,10 +514,9 @@
     document.getElementById("bijoyBox").value = str;
   }
 
-  // ২. বিজয় থেকে ইউনিকোড রূপান্তর ইঞ্জিন
   function convertB2U() {
     let str = document.getElementById("bijoyBox").value;
-    if (!str) return;
+    if (!str) { document.getElementById("unicodeBox").value = ''; return; }
 
     str = str.replace(/‡/g, "†");
 
