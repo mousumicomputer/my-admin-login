@@ -13,6 +13,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&display=swap" rel="stylesheet"/>
 
   <style>
+    /* SutonnyMJ ফন্ট লোড (অনলাইন ও কম্পিউটার উভয় দিক থেকে) */
+    @font-face {
+      font-family: 'SutonnyMJ';
+      src: local('SutonnyMJ'),
+           local('SutonnyMJ Regular'),
+           url('https://cdn.jsdelivr.net/gh/tanvir-raj/bangla-web-fonts@main/fonts/SutonnyMJ.woff2') format('woff2'),
+           url('https://cdn.jsdelivr.net/gh/ShahidHasan/SutonnyMJ-Webfont@master/SutonnyMJ.woff') format('woff'),
+           url('https://cdn.jsdelivr.net/gh/maateen/bangla-fonts/dist/SutonnyMJ/SutonnyMJ.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
     /* ১. গ্লোবাল ডিজাইন */
     * { box-sizing: border-box; }
     body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f2f4f7; color: #333; overflow-x: hidden; }
@@ -80,7 +93,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* ৫. কনভার্টার সেকশন (অ্যাপ-স্টাইল) */
+    /* ৫. কনভার্টার সেকশন */
     .converter-content-area {
       flex: 1;
       padding: 35px 40px;
@@ -196,6 +209,14 @@
       font-size: 18px;
     }
 
+    /* বিজয় টেক্সটবক্সের বিশেষ ফন্ট স্টাইল (বাংলায় প্রদর্শনের জন্য) */
+    #bijoyBox {
+      font-family: 'SutonnyMJ', 'SutonnyMJ Regular', sans-serif !important;
+      font-size: 24px !important;
+      line-height: 1.6;
+      letter-spacing: 0.5px;
+    }
+
     .middle-swap-btn {
       background: #ffffff;
       border: 2px solid #1e58ea;
@@ -250,6 +271,7 @@
       .middle-swap-btn { transform: rotate(90deg); margin: 6px 0; }
       .middle-swap-btn:hover { transform: rotate(90deg) scale(1.1); }
       .app-textarea { height: 230px; font-size: 18px; }
+      #bijoyBox { font-size: 21px !important; }
       .card-top-header { flex-direction: column; align-items: flex-start; }
       .card-actions { width: 100%; justify-content: flex-end; }
     }
@@ -274,7 +296,7 @@
     <span>+8801608314552</span>
   </div>
 
-  <!-- মিডল হেডার (লোগো ও কন্টাক্ট) -->
+  <!-- মিডল হেডার -->
   <div class="middle-header">
     <div class="logo-area">
       <div class="logo-icon"><i class="fa-solid fa-desktop"></i></div>
@@ -314,7 +336,7 @@
     </a>
   </div>
 
-  <!-- কনভার্টার সেকশন (সাইটের ভেতরে) -->
+  <!-- কনভার্টার সেকশন -->
   <div class="converter-content-area">
 
     <!-- ব্যানার -->
@@ -339,7 +361,7 @@
     <!-- কার্ড র‍্যাপার -->
     <div class="converter-cards-wrapper">
 
-      <!-- বাম কার্ড: Unicode -->
+      <!-- বাম কার্ড: Unicode (Avro / Web) -->
       <div class="converter-card">
         <div class="card-top-header">
           <span class="card-title tiro-text">Unicode</span>
@@ -366,7 +388,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e58ea" stroke-width="2.5"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line></svg>
       </button>
 
-      <!-- ডান কার্ড: Bijoy (ANSI) -->
+      <!-- ডান কার্ড: Bijoy (ANSI) - এতে SutonnyMJ ফন্ট দেওয়া হয়েছে -->
       <div class="converter-card">
         <div class="card-top-header">
           <span class="card-title tiro-text">ANSI (Bijoy)</span>
@@ -385,7 +407,7 @@
             </button>
           </div>
         </div>
-        <textarea id="bijoyBox" class="app-textarea tiro-text" placeholder="Converted Bijoy text appears here..."></textarea>
+        <textarea id="bijoyBox" class="app-textarea" placeholder="Converted Bijoy text appears here..."></textarea>
       </div>
 
     </div>
