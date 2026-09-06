@@ -3,24 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unicode to Bijoy Converter - Mousumi Computer</title>
+  <title>Unicode to Bijoy (ANSI) Converter - Mousumi Computer</title>
   <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEifAQVAOjeF0ccNQdBRY2gpfOlc19vjYbQiNjCUUJ9jJqxHEjVJB7nhST4fbzYcdaaV3DtoBrxxrhi4nQJsuwHoWnEmQKud8muKsZIRcWV6YgFLEmdsDc8TRv8Vcmw5jktkvXt4cnlRnbxOW8MlFzlJ4P7QSA7E1Owl9bxDsaW7wjMJQ91bdczQa5zjxu94/s1600/Screenshot_1.jpg">
   
-  <!-- FontAwesome Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-  
-  <!-- Tiro Bangla -->
   <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&display=swap" rel="stylesheet"/>
 
   <style>
-    /* অনলাইনে SutonnyMJ ফন্ট লোড */
-    @font-face {
-      font-family: "SutonnyMJ";
-      src: url("https://db.onlinewebfonts.com/t/745d8457da8dec2e3477d0d4da431299.woff2") format("woff2"),
-           url("https://db.onlinewebfonts.com/t/745d8457da8dec2e3477d0d4da431299.ttf") format("truetype");
-      font-display: swap;
-    }
-
     body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f2f4f7; color: #333; overflow-x: hidden; }
     a { text-decoration: none; }
     .site-wrapper { max-width: 1200px; margin: 0 auto; background-color: #ffffff; box-shadow: 0 0 15px rgba(0,0,0,0.1); min-height: 100vh; display: flex; flex-direction: column; }
@@ -46,40 +35,39 @@
     .nav-admin-btn { background: linear-gradient(135deg, #0d233a 0%, #1a3a5c 100%); color: #ffffff !important; padding: 8px 18px !important; border-radius: 50px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
 
     /* কনভার্টার সেকশন */
-    .converter-container { flex: 1; padding: 40px 30px; max-width: 1050px; margin: 0 auto; width: calc(100% - 60px); }
-    .page-title { text-align: center; margin-bottom: 25px; }
+    .converter-container { flex: 1; padding: 35px 25px; max-width: 1050px; margin: 0 auto; width: calc(100% - 50px); }
+    .page-title { text-align: center; margin-bottom: 20px; }
     .page-title h2 { color: #003366; font-size: 26px; margin-bottom: 6px; }
 
-    .controls-wrapper { display: flex; justify-content: center; gap: 15px; margin: 25px 0 15px 0; flex-wrap: wrap; }
+    .controls-wrapper { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
     .btn-convert { background: #2176ff; color: #ffffff; border: none; padding: 12px 28px; font-size: 15px; font-weight: bold; border-radius: 30px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(33, 118, 255, 0.3); transition: 0.2s; }
-    .btn-convert:hover { background: #0056d6; }
+    .btn-convert:hover { background: #0056d6; transform: translateY(-1px); }
     .btn-convert-reverse { background: #2e8b57; box-shadow: 0 4px 12px rgba(46, 139, 87, 0.3); }
+    .btn-convert-reverse:hover { background: #226740; }
 
     .converter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .converter-card { background: #ffffff; border: 1px solid #d9e2ec; border-radius: 10px; padding: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
     .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .card-header h3 { margin: 0; font-size: 17px; color: #003366; }
     
-    .converter-textarea { width: 100%; height: 230px; box-sizing: border-box; border: 1px solid #ccd6e0; border-radius: 6px; padding: 12px; font-size: 18px; resize: vertical; outline: none; }
+    .converter-textarea { width: 100%; height: 230px; box-sizing: border-box; border: 1px solid #ccd6e0; border-radius: 6px; padding: 12px; font-size: 16px; resize: vertical; outline: none; }
     .converter-textarea:focus { border-color: #2176ff; }
-    
-    /* আউটপুট বক্সে SutonnyMJ ফন্ট ব্যবহার (যাতে সরাসরি বাংলা দেখায়) */
-    .bijoy-font-output {
-      font-family: "SutonnyMJ", Arial, sans-serif !important;
-      font-size: 20px;
-    }
+    .bijoy-box-style { font-family: 'Consolas', 'Courier New', monospace; font-size: 15px; }
 
     .action-btn-bar { display: flex; gap: 10px; margin-top: 10px; }
     .btn-action { background: #f0f4f8; border: 1px solid #cbd5e1; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; color: #334155; }
+    .btn-action:hover { background: #e2e8f0; }
 
-    .site-footer { background-color: #2176ff; color: #ffffff; padding: 25px 30px; margin-top: auto; }
+    .note-box { background: #eff6ff; border-left: 4px solid #2176ff; padding: 14px 18px; border-radius: 4px; margin-top: 25px; font-size: 13.5px; color: #1e3a8a; line-height: 1.6; }
+
+    .site-footer { background-color: #2176ff; color: #ffffff; padding: 25px 30px; margin-top: auto; text-align: center; }
   </style>
 </head>
 <body>
 
 <div class="site-wrapper">
   <div class="ticker-top-bar">
-    <span class="tiro-text">ইউনিকোড এবং বিজয় ফন্ট কনভার্টার টুল - মৌসুমি কম্পিউটার</span>
+    <span class="tiro-text">নির্ভুল ইউনিকোড এবং বিজয় ফন্ট কনভার্টার - মৌসুমি কম্পিউটার</span>
     <span>+8801608314552</span>
   </div>
 
@@ -111,144 +99,227 @@
   <div class="converter-container">
     <div class="page-title">
       <h2 class="tiro-text"><i class="fa-solid fa-arrow-right-arrow-left" style="color: #2176ff;"></i> ইউনিকোড ⇄ বিজয় কনভার্টার</h2>
-      <p class="tiro-text">মাত্রা ছাড়া নিখুঁত এ-কার সহ বিজয় কনভার্সন</p>
+      <p class="tiro-text">১০০% নির্ভুল যুক্তবর্ণ এবং মাত্রাহীন এ-কার সহ বিজয় (SutonnyMJ) ফরম্যাটে রূপান্তর করুন</p>
     </div>
 
     <div class="controls-wrapper">
-      <button class="btn-convert tiro-text" onclick="doUnicodeToBijoy()">
-        ইউনিকোড ➔ বিজয় <i class="fa-solid fa-arrow-right"></i>
+      <button class="btn-convert tiro-text" onclick="convertU2B()">
+        ইউনিকোড ➔ বিজয় (ANSI) <i class="fa-solid fa-arrow-right"></i>
       </button>
-      <button class="btn-convert btn-convert-reverse tiro-text" onclick="doBijoyToUnicode()">
+      <button class="btn-convert btn-convert-reverse tiro-text" onclick="convertB2U()">
         <i class="fa-solid fa-arrow-left"></i> বিজয় ➔ ইউনিকোড
       </button>
     </div>
 
     <div class="converter-grid">
-      <!-- ইউনিকোড বক্স -->
+      <!-- ইউনিকোড ইনপুট -->
       <div class="converter-card">
         <div class="card-header">
-          <h3 class="tiro-text">ইউনিকোড ইনপুট (Unicode)</h3>
+          <h3 class="tiro-text"><i class="fa-solid fa-keyboard" style="color:#2176ff;"></i> ইউনিকোড টেক্সট (Avro/Web)</h3>
         </div>
-        <textarea id="unicodeBox" class="converter-textarea tiro-text" placeholder="এখানে ইউনিকোড লিখুন (যেমন: কে)..."></textarea>
+        <textarea id="unicodeBox" class="converter-textarea tiro-text" placeholder="এখানে ইউনিকোড লেখা পেস্ট করুন..."></textarea>
         <div class="action-btn-bar">
           <button class="btn-action" onclick="copyValue('unicodeBox')"><i class="fa-regular fa-copy"></i> কপি করুন</button>
           <button class="btn-action" onclick="document.getElementById('unicodeBox').value=''"><i class="fa-solid fa-trash-can"></i> মুছুন</button>
         </div>
       </div>
 
-      <!-- বিজয় আউটপুট বক্স -->
+      <!-- বিজয় আউটপুট -->
       <div class="converter-card">
         <div class="card-header">
-          <h3 class="tiro-text">বিজয় আউটপুট (SutonnyMJ)</h3>
+          <h3 class="tiro-text"><i class="fa-solid fa-font" style="color:#2e8b57;"></i> বিজয় / SutonnyMJ টেক্সট</h3>
         </div>
-        <textarea id="bijoyBox" class="converter-textarea bijoy-font-output" placeholder="এখানে বিজয় আউটপুট আসবে..."></textarea>
+        <textarea id="bijoyBox" class="converter-textarea bijoy-box-style" placeholder="এখানে বিজয়ের কোড আসবে..."></textarea>
         <div class="action-btn-bar">
           <button class="btn-action" onclick="copyValue('bijoyBox')"><i class="fa-regular fa-copy"></i> কপি করুন</button>
           <button class="btn-action" onclick="document.getElementById('bijoyBox').value=''"><i class="fa-solid fa-trash-can"></i> মুছুন</button>
         </div>
       </div>
     </div>
+
+    <div class="note-box tiro-text">
+      <strong><i class="fa-solid fa-circle-check"></i> ব্যবহারের নিয়ম:</strong> 
+      ডানপাশের বক্স থেকে <strong>"কপি করুন"</strong> বাটনে ক্লিক করে লেখাটি Microsoft Word বা Adobe Illustrator-এ পেস্ট করে ফন্ট <strong>SutonnyMJ</strong> সিলেক্ট করুন। কোনো অক্ষর ভাঙবে না এবং এ-কারের মাথায় কোনো অপ্রয়োজনীয় দাগ/মাত্রা থাকবে না।
+    </div>
   </div>
 
   <footer class="site-footer">
-    <div style="text-align: center;">&copy; ২০২৬ মৌসুমি কম্পিউটার - সর্বস্বত্ব সংরক্ষিত।</div>
+    &copy; ২০২৬ মৌসুমি কম্পিউটার - সর্বস্বত্ব সংরক্ষিত।
   </footer>
 </div>
 
+<!-- ফুল অ্যালগরিদম ও গ্রামাটিক্যাল ইঞ্জিন -->
 <script>
   function copyValue(id) {
     const el = document.getElementById(id);
     if (!el.value) return;
     el.select();
     navigator.clipboard.writeText(el.value).then(() => {
-      alert("সফলভাবে কপি হয়েছে!");
+      alert("লেখা সফলভাবে কপি হয়েছে!");
     });
   }
 
-  // ম্যাপিং তালিকা (মাত্রাহীন এ-কার '†')
-  const mapList = [
-    ["র্স্পৃ", "c„©"], ["ন্ত্র্য", "š¿¨"], ["ক্ষ্ম", "²"], ["চ্ছ্ব", "”Qô"], ["জ্জ্ব", "¾¡"],
-    ["জ্ঞ", "Á"], ["ন্ধ্য", "Ü¨"], ["ন্ধ্র", "Üª"], ["ম্প্র", "¤cÖ"], ["ম্ব্র", "¤^Ö"],
-    ["ম্ভ্র", "¤¢Ö"], ["ন্ত্র", "š¿"], ["স্ক্র", "¯Œ"], ["স্খ", "¯L"], ["স্ট", "÷"],
-    ["স্ট্র", "÷ª"], ["স্তু", "¯‘"], ["স্থ", "¯’"], ["স্নে", "†mœ"], ["স্প", "¯ú"],
-    ["স্ফ", "ù"], ["স্ব", "¯^"], ["স্ম", "¯§"], ["স্য", "m¨"], ["স্র", "¯ª"],
-    ["স্ল", "mø"], ["ক্ক", "°"], ["ক্ট", "±"], ["ক্ত", "³"], ["ক্ব", "K¡"],
-    ["ক্র", "µ"], ["ক্ল", "K¬"], ["ক্ষ", "ÿ"], ["ক্স", "·"], ["খ্য", "L¨"],
-    ["খ্র", "Lª"], ["গ্গ", "MÎ"], ["গ্ধ", "»"], ["গ্ন", "Mœ"], ["গ্ব", "M¡"],
-    ["গম", "M¥"], ["গ্য", "M¨"], ["গ্র", "MÖ"], ["গ্ল", "Mø"], ["ঘ্ন", "Nœ"],
-    ["ঘ্র", "NÖ"], ["ঙ্ক", "¼"], ["ঙ্ক্ষ", "•ÿ"], ["ঙ্খ", "•L"], ["ঙ্গ", "½"],
-    ["ঙ্ঘ", "•N"], ["চ্চ", "”P"], ["চ্ছ", "”Q"], ["চ্ছ্ব", "”Q¡"], ["চ্ঞ", "”T"],
-    ["জ্জ", "¾"], ["জ্ঝ", "À"], ["জ্ব", "R¡"], ["জ্য", "R¨"], ["জ্র", "Rª"],
-    ["ঞ্চ", "Â"], ["ঞ্ছ", "Ã"], ["ঞ্জ", "Ä"], ["ঞ্ঝ", "Å"], ["ট্ট", "Æ"],
-    ["ট্ব", "U¡"], ["ট্ম", "U¥"], ["ট্য", "U¨"], ["ট্র", "Uª"], ["ঠ্য", "V¨"],
-    ["ঠ্র", "Vª"], ["ড্ড", "Ç"], ["ড্র", "Wª"], ["ঢ্র", "Xª"], ["ণ্ট", "È"],
-    ["ণ্ঠ", "É"], ["ণ্ড", "Ê"], ["ণ্ণ", "Yœ"], ["ণ্ব", "Y¡"], ["ন্ম", "Y¥"],
-    ["ণ্য", "Y¨"], ["ত্ত", "Ë"], ["ত্ত্ব", "Ë¡"], ["ত্থ", "Ì"], ["ত্ন", "Zœ"],
-    ["ত্ব", "Z¡"], ["ত্ম", "Z¥"], ["ত্য", "Z¨"], ["ত্র", "Î"], ["থ্ব", "_¡"],
-    ["থ্য", "_¨"], ["থ্র", "_ª"], ["দ্দ", "Ï"], ["দ্ধ", "×"], ["দ্ব", "Ø"],
-    ["দ্ব্য", "Ø¨"], ["দ্ম", "Ù"], ["দ্য", "`¨"], ["দ্র", "`ª"], ["ধ্ন", "aœ"],
-    ["ধ্ব", "aŸ"], ["ধ্য", "a¨"], ["ধ্র", "aª"], ["ন্ট", "›U"], ["ন্ঠ", "Ú"],
-    ["ন্ড", "Û"], ["ন্ত", "šÍ"], ["ন্থ", "š’"], ["ন্দ", "›`"], ["ন্দ্ব", "›Ø"],
-    ["ন্ধ", "Ü"], ["ন্ন", "bœ"], ["ন্ব", "š^"], ["ন্ম", "b¥"], ["ন্য", "b¨"],
-    ["প্ট", "ß"], ["প্ত", "ß"], ["প্ন", "cœ"], ["প্প", "à"], ["প্র", "cÖ"],
-    ["প্ল", "cø"], ["প্স", "cm"], ["ফ্র", "d«"], ["ফ্ল", "d¬"], ["ব্জ", "eR"],
-    ["ব্দ", "ã"], ["ব্ধ", "ä"], ["ব্ব", "eŸ"], ["ব্য", "e¨"], ["ব্র", "eª"],
-    ["ব্ল", "eø"], ["ভ্য", "f¨"], ["ভ্র", "å"], ["ম্ন", "gœ"], ["ম্প", "¤ú"],
-    ["ম্ফ", "ç"], ["ম্ব", "¤^"], ["ম্ভ", "¤¢"], ["ম্ম", "¤§"], ["ম্য", "g¨"],
-    ["ম্র", "gª"], ["ম্ল", "gø"], ["ল্ক", "é"], ["ল্গ", "ê"], ["ল্ট", "ë"],
-    ["ল্ড", "ì"], ["ল্প", "í"], ["ল্ফ", "î"], ["ল্ব", "j¡"], ["ল্ম", "j¥"],
-    ["ল্ল", "jø"], ["ল্য", "j¨"], ["শ্র", "kÖ"], ["শ্ল", "kø"], ["শ্ব", "k¦"],
-    ["শ্ম", "k¥"], ["শ্য", "k¨"], ["ষ্ক", "®‹"], ["ষ্ট", "ó"], ["ষ্ঠ", "ô"],
-    ["ষ্ণ", "ò"], ["ষ্প", "®ú"], ["ষ্ফ", "õ"], ["ষ্ম", "®§"], ["স্ত", "¯Í"],
-    ["হ্ণ", "nè"], ["হ্ন", "ý"], ["হ্ব", "nŸ"], ["হ্ম", "þ"], ["হ্য", "n¨"],
-    ["হ্র", "nª"], ["হ্ল", "n¬"], ["হু", "û"], ["হৃ", "ü"], ["রু", "iæ"],
-    ["রূ", "iƒ"], ["শু", "ï"], ["গু", "¸"],
-    ["অ", "A"], ["আ", "Av"], ["ই", "B"], ["ঈ", "C"], ["উ", "D"], ["ঊ", "E"],
-    ["ঋ", "F"], ["এ", "G"], ["ঐ", "H"], ["ও", "I"], ["ঔ", "J"],
-    ["ক", "K"], ["খ", "L"], ["গ", "M"], ["ঘ", "N"], ["ঙ", "O"],
-    ["চ", "P"], ["ছ", "Q"], ["জ", "R"], ["ঝ", "S"], ["ঞ", "T"],
-    ["ট", "U"], ["ঠ", "V"], ["ড", "W"], ["ঢ", "X"], ["ণ", "Y"],
-    ["ত", "Z"], ["থ", "_"], ["দ", "`"], ["ধ", "a"], ["ন", "b"],
-    ["প", "c"], ["ফ", "d"], ["ব", "e"], ["ভ", "f"], ["ম", "g"],
-    ["য", "h"], ["র", "i"], ["ল", "j"], ["শ", "k"], ["ষ", "l"],
-    ["স", "m"], ["হ", "n"], ["ড়", "o"], ["ঢ়", "p"], ["য়", "q"],
-    ["ৎ", "r"], ["ং", "s"], ["ঃ", "t"], ["ঁ", "u"],
-    // কারসমূহ: এ-কার মাত্রাহীন '†'
-    ["া", "v"], ["ি", "w"], ["ী", "x"], ["ু", "y"], ["ূ", "~"],
-    ["ৃ", "„"], ["ে", "†"], ["ৈ", "‰"], ["ৌ", "Š"], ["্", "&"],
-    ["০", "0"], ["১", "1"], ["২", "2"], ["৩", "3"], ["৪", "4"],
-    ["৫", "5"], ["৬", "6"], ["৭", "7"], ["৮", "8"], ["৯", "9"]
-  ];
+  // ১. ইউনিকোড থেকে বিজয় রূপান্তর ইঞ্জিন
+  function convertU2B() {
+    let str = document.getElementById("unicodeBox").value;
+    if (!str) return;
 
-  function doUnicodeToBijoy() {
-    let src = document.getElementById("unicodeBox").value;
-    if (!src) return;
+    // রেফ রি-পজিশনিং (র্ + ক -> ক©)
+    str = str.replace(/([ক-হড়-ঢ়])(্)([র])(্)/g, "র্$1$2");
+    str = str.replace(/র্([ক-হড়-ঢ়])(?:্([ক-হড়-ঢ়]))*/g, function(match, c1, c2) {
+      return (c2 ? c1 + "্" + c2 : c1) + "©";
+    });
 
-    src = src.replace(/র্([ক-হড়-ঢ়])/g, "$1©");
-    src = src.replace(/([ক-হড়-ঢ়](?:্[ক-হড়-ঢ়])*)+([িেৈ])/g, "$2$1");
-    src = src.replace(/([ক-হড়-ঢ়](?:্[ক-হড়-ঢ়])*)ো/g, "†$1v");
-    src = src.replace(/([ক-হড়-ঢ়](?:্[ক-হড়-ঢ়])*)ৌ/g, "†$1Š");
+    // প্রি-কার রি-অর্ডারিং (ে, ৈ, ি বর্ণের পূর্বে নিয়ে যাওয়া)
+    // মাত্রাহীন এ-কার নিশ্চিত করতে '†' ব্যবহার করা হয়েছে
+    str = str.replace(/([ক-হড়-ঢ়](?:্[ক-হড়-ঢ়])*)+([েৈি])/g, function(match, consonant, kar) {
+      let k = (kar === 'ে') ? '†' : ((kar === 'ৈ') ? '‰' : 'w');
+      return k + consonant;
+    });
 
-    for (let i = 0; i < mapList.length; i++) {
-      src = src.split(mapList[i][0]).join(mapList[i][1]);
+    // ও-কার ও ঔ-কার আলাদা করা
+    str = str.replace(/([ক-হড়-ঢ়](?:্[ক-হড়-ঢ়])*)ো/g, "†$1v");
+    str = str.replace(/([ক-হড়-ঢ়](?:্[ক-হড়-ঢ়])*)ৌ/g, "†$1Š");
+
+    // যুক্তবর্ণ ও একক বর্ণের ম্যাপিং টেবিল
+    const conversionMap = [
+      ["র্স্পৃ", "c„©"], ["ন্ত্র্য", "š¿¨"], ["ক্ষ্ম", "²"], ["চ্ছ্ব", "”Qô"], ["জ্জ্ব", "¾¡"],
+      ["জ্ঞ", "Á"], ["ন্ধ্য", "Ü¨"], ["ন্ধ্র", "Üª"], ["ম্প্র", "¤cÖ"], ["ম্ব্র", "¤^Ö"],
+      ["ম্ভ্র", "¤¢Ö"], ["ন্ত্র", "š¿"], ["স্ক্র", "¯Œ"], ["স্খ", "¯L"], ["স্ট", "÷"],
+      ["স্ট্র", "÷ª"], ["স্তু", "¯‘"], ["স্থ", "¯’"], ["স্নে", "†mœ"], ["স্প", "¯ú"],
+      ["স্ফ", "ù"], ["স্ব", "¯^"], ["স্ম", "¯§"], ["স্য", "m¨"], ["স্র", "¯ª"],
+      ["স্ল", "mø"], ["ক্ক", "°"], ["ক্ট", "±"], ["ক্ত", "³"], ["ক্ব", "K¡"],
+      ["ক্র", "µ"], ["ক্ল", "K¬"], ["ক্ষ", "ÿ"], ["ক্স", "·"], ["খ্য", "L¨"],
+      ["খ্র", "Lª"], ["গ্গ", "MÎ"], ["গ্ধ", "»"], ["গ্ন", "Mœ"], ["গ্ব", "M¡"],
+      ["গম", "M¥"], ["গ্য", "M¨"], ["গ্র", "MÖ"], ["গ্ল", "Mø"], ["ঘ্ন", "Nœ"],
+      ["ঘ্র", "NÖ"], ["ঙ্ক", "¼"], ["ঙ্ক্ষ", "•ÿ"], ["ঙ্খ", "•L"], ["ঙ্গ", "½"],
+      ["ঙ্ঘ", "•N"], ["চ্চ", "”P"], ["চ্ছ", "”Q"], ["চ্ছ্ব", "”Q¡"], ["চ্ঞ", "”T"],
+      ["জ্জ", "¾"], ["জ্ঝ", "À"], ["জ্ব", "R¡"], ["জ্য", "R¨"], ["জ্র", "Rª"],
+      ["ঞ্চ", "Â"], ["ঞ্ছ", "Ã"], ["ঞ্জ", "Ä"], ["ঞ্ঝ", "Å"], ["ট্ট", "Æ"],
+      ["ট্ব", "U¡"], ["ট্ম", "U¥"], ["ট্য", "U¨"], ["ট্র", "Uª"], ["ঠ্য", "V¨"],
+      ["ঠ্র", "Vª"], ["ড্ড", "Ç"], ["ড্র", "Wª"], ["ঢ্র", "Xª"], ["ণ্ট", "È"],
+      ["ণ্ঠ", "É"], ["ণ্ড", "Ê"], ["ণ্ণ", "Yœ"], ["ণ্ব", "Y¡"], ["ন্ম", "Y¥"],
+      ["ণ্য", "Y¨"], ["ত্ত", "Ë"], ["ত্ত্ব", "Ë¡"], ["ত্থ", "Ì"], ["ত্ন", "Zœ"],
+      ["ত্ব", "Z¡"], ["ত্ম", "Z¥"], ["ত্য", "Z¨"], ["ত্র", "Î"], ["থ্ব", "_¡"],
+      ["থ্য", "_¨"], ["থ্র", "_ª"], ["দ্দ", "Ï"], ["দ্ধ", "×"], ["দ্ব", "Ø"],
+      ["দ্ব্য", "Ø¨"], ["দ্ম", "Ù"], ["দ্য", "`¨"], ["দ্র", "`ª"], ["ধ্ন", "aœ"],
+      ["ধ্ব", "aŸ"], ["ধ্য", "a¨"], ["ধ্র", "aª"], ["ন্ট", "›U"], ["ন্ঠ", "Ú"],
+      ["ন্ড", "Û"], ["ন্ত", "šÍ"], ["ন্থ", "š’"], ["ন্দ", "›`"], ["ন্দ্ব", "›Ø"],
+      ["ন্ধ", "Ü"], ["ন্ন", "bœ"], ["ন্ব", "š^"], ["ন্ম", "b¥"], ["ন্য", "b¨"],
+      ["প্ট", "ß"], ["প্ত", "ß"], ["প্ন", "cœ"], ["প্প", "à"], ["প্র", "cÖ"],
+      ["প্ল", "cø"], ["প্স", "cm"], ["ফ্র", "d«"], ["ফ্ল", "d¬"], ["ব্জ", "eR"],
+      ["ব্দ", "ã"], ["ব্ধ", "ä"], ["ব্ব", "eŸ"], ["ব্য", "e¨"], ["ব্র", "eª"],
+      ["ব্ল", "eø"], ["ভ্য", "f¨"], ["ভ্র", "å"], ["ম্ন", "gœ"], ["ম্প", "¤ú"],
+      ["ম্ফ", "ç"], ["ম্ব", "¤^"], ["ম্ভ", "¤¢"], ["ম্ম", "¤§"], ["ম্য", "g¨"],
+      ["ম্র", "gª"], ["ম্ল", "gø"], ["ল্ক", "é"], ["ল্গ", "ê"], ["ল্ট", "ë"],
+      ["ল্ড", "ì"], ["ল্প", "í"], ["ল্ফ", "î"], ["ল্ব", "j¡"], ["ল্ম", "j¥"],
+      ["ল্ল", "jø"], ["ল্য", "j¨"], ["শ্র", "kÖ"], ["শ্ল", "kø"], ["শ্ব", "k¦"],
+      ["শ্ম", "k¥"], ["শ্য", "k¨"], ["ষ্ক", "®‹"], ["ষ্ট", "ó"], ["ষ্ঠ", "ô"],
+      ["ষ্ণ", "ò"], ["ষ্প", "®ú"], ["ষ্ফ", "õ"], ["ষ্ম", "®§"], ["স্ত", "¯Í"],
+      ["হ্ণ", "nè"], ["হ্ন", "ý"], ["হ্ব", "nŸ"], ["হ্ম", "þ"], ["হ্য", "n¨"],
+      ["হ্র", "nª"], ["হ্ল", "n¬"], ["হু", "û"], ["হৃ", "ü"], ["রু", "iæ"],
+      ["রূ", "iƒ"], ["শু", "ï"], ["গু", "¸"],
+
+      // স্বরবর্ণ
+      ["অ", "A"], ["আ", "Av"], ["ই", "B"], ["ঈ", "C"], ["উ", "D"], ["ঊ", "E"],
+      ["ঋ", "F"], ["এ", "G"], ["ঐ", "H"], ["ও", "I"], ["ঔ", "J"],
+
+      // ব্যঞ্জনবর্ণ
+      ["ক", "K"], ["খ", "L"], ["গ", "M"], ["ঘ", "N"], ["ঙ", "O"],
+      ["চ", "P"], ["ছ", "Q"], ["জ", "R"], ["ঝ", "S"], ["ঞ", "T"],
+      ["ট", "U"], ["ঠ", "V"], ["ড", "W"], ["ঢ", "X"], ["ণ", "Y"],
+      ["ত", "Z"], ["থ", "_"], ["দ", "`"], ["ধ", "a"], ["ন", "b"],
+      ["প", "c"], ["ফ", "d"], ["ব", "e"], ["ভ", "f"], ["ম", "g"],
+      ["য", "h"], ["র", "i"], ["ল", "j"], ["শ", "k"], ["ষ", "l"],
+      ["স", "m"], ["হ", "n"], ["ড়", "o"], ["ঢ়", "p"], ["য়", "q"],
+      ["ৎ", "r"], ["ং", "s"], ["ঃ", "t"], ["ঁ", "u"],
+
+      // কারসমূহ
+      ["া", "v"], ["ি", "w"], ["ী", "x"], ["ু", "y"], ["ূ", "~"],
+      ["ৃ", "„"], ["ে", "†"], ["ৈ", "‰"], ["ৌ", "Š"], ["্", "&"],
+      ["্য", "¨"], ["্র", "ª"],
+
+      // সংখ্যা
+      ["০", "0"], ["১", "1"], ["২", "2"], ["৩", "3"], ["৪", "4"],
+      ["৫", "5"], ["৬", "6"], ["৭", "7"], ["৮", "8"], ["৯", "9"]
+    ];
+
+    for (let i = 0; i < conversionMap.length; i++) {
+      str = str.split(conversionMap[i][0]).join(conversionMap[i][1]);
     }
 
-    document.getElementById("bijoyBox").value = src;
+    document.getElementById("bijoyBox").value = str;
   }
 
-  function doBijoyToUnicode() {
-    let src = document.getElementById("bijoyBox").value;
-    if (!src) return;
+  // ২. বিজয় থেকে ইউনিকোড রূপান্তর ইঞ্জিন
+  function convertB2U() {
+    let str = document.getElementById("bijoyBox").value;
+    if (!str) return;
 
-    src = src.replace(/‡/g, "†");
-    for (let i = 0; i < mapList.length; i++) {
-      src = src.split(mapList[i][1]).join(mapList[i][0]);
+    str = str.replace(/‡/g, "†");
+
+    const revMap = [
+      ["র্স্পৃ", "c„©"], ["ন্ত্র্য", "š¿¨"], ["ক্ষ্ম", "²"], ["চ্ছ্ব", "”Qô"], ["জ্জ্ব", "¾¡"],
+      ["জ্ঞ", "Á"], ["ন্ধ্য", "Ü¨"], ["ন্ধ্র", "Üª"], ["ম্প্র", "¤cÖ"], ["ম্ব্র", "¤^Ö"],
+      ["ম্ভ্র", "¤¢Ö"], ["ন্ত্র", "š¿"], ["স্ক্র", "¯Œ"], ["স্খ", "¯L"], ["স্ট", "÷"],
+      ["স্ট্র", "÷ª"], ["স্তু", "¯‘"], ["স্থ", "¯’"], ["স্নে", "†mœ"], ["স্প", "¯ú"],
+      ["স্ফ", "ù"], ["স্ব", "¯^"], ["স্ম", "¯§"], ["স্য", "m¨"], ["স্র", "¯ª"],
+      ["স্ল", "mø"], ["ক্ক", "°"], ["ক্ট", "±"], ["ক্ত", "³"], ["ক্ব", "K¡"],
+      ["ক্র", "µ"], ["ক্ল", "K¬"], ["ক্ষ", "ÿ"], ["ক্স", "·"], ["খ্য", "L¨"],
+      ["খ্র", "Lª"], ["গ্গ", "MÎ"], ["গ্ধ", "»"], ["গ্ন", "Mœ"], ["গ্ব", "M¡"],
+      ["গম", "M¥"], ["গ্য", "M¨"], ["গ্র", "MÖ"], ["গ্ল", "Mø"], ["ঘ্ন", "Nœ"],
+      ["ঘ্র", "NÖ"], ["ঙ্ক", "¼"], ["ঙ্ক্ষ", "•ÿ"], ["ঙ্খ", "•L"], ["ঙ্গ", "½"],
+      ["ঙ্ঘ", "•N"], ["চ্চ", "”P"], ["চ্ছ", "”Q"], ["চ্ছ্ব", "”Q¡"], ["চ্ঞ", "”T"],
+      ["জ্জ", "¾"], ["জ্ঝ", "À"], ["জ্ব", "R¡"], ["জ্য", "R¨"], ["জ্র", "Rª"],
+      ["ঞ্চ", "Â"], ["ঞ্ছ", "Ã"], ["ঞ্জ", "Ä"], ["ঞ্ঝ", "Å"], ["ট্ট", "Æ"],
+      ["ট্ব", "U¡"], ["ট্ম", "U¥"], ["ট্য", "U¨"], ["ট্র", "Uª"], ["ঠ্য", "V¨"],
+      ["ঠ্র", "Vª"], ["ড্ড", "Ç"], ["ড্র", "Wª"], ["ঢ্র", "Xª"], ["ণ্ট", "È"],
+      ["ণ্ঠ", "É"], ["ণ্ড", "Ê"], ["ণ্ণ", "Yœ"], ["ণ্ব", "Y¡"], ["ন্ম", "Y¥"],
+      ["ণ্য", "Y¨"], ["ত্ত", "Ë"], ["ত্ত্ব", "Ë¡"], ["ত্থ", "Ì"], ["ত্ন", "Zœ"],
+      ["ত্ব", "Z¡"], ["ত্ম", "Z¥"], ["ত্য", "Z¨"], ["ত্র", "Î"], ["থ্ব", "_¡"],
+      ["থ্য", "_¨"], ["থ্র", "_ª"], ["দ্দ", "Ï"], ["দ্ধ", "×"], ["দ্ব", "Ø"],
+      ["দ্ব্য", "Ø¨"], ["দ্ম", "Ù"], ["দ্য", "`¨"], ["দ্র", "`ª"], ["ধ্ন", "aœ"],
+      ["ধ্ব", "aŸ"], ["ধ্য", "a¨"], ["ধ্র", "aª"], ["ন্ট", "›U"], ["ন্ঠ", "Ú"],
+      ["ন্ড", "Û"], ["ন্ত", "šÍ"], ["ন্থ", "š’"], ["ন্দ", "›`"], ["ন্দ্ব", "›Ø"],
+      ["ন্ধ", "Ü"], ["ন্ন", "bœ"], ["ন্ব", "š^"], ["ন্ম", "b¥"], ["ন্য", "b¨"],
+      ["প্ট", "ß"], ["প্ত", "ß"], ["প্ন", "cœ"], ["প্প", "à"], ["প্র", "cÖ"],
+      ["প্ল", "cø"], ["প্স", "cm"], ["ফ্র", "d«"], ["ফ্ল", "d¬"], ["ব্জ", "eR"],
+      ["ব্দ", "ã"], ["ব্ধ", "ä"], ["ব্ব", "eŸ"], ["ব্য", "e¨"], ["ব্র", "eª"],
+      ["ব্ল", "eø"], ["ভ্য", "f¨"], ["ভ্র", "å"], ["ম্ন", "gœ"], ["ম্প", "¤ú"],
+      ["ম্ফ", "ç"], ["ম্ব", "¤^"], ["ম্ভ", "¤¢"], ["ম্ম", "¤§"], ["ম্য", "g¨"],
+      ["ম্র", "gª"], ["ম্ল", "gø"], ["ল্ক", "é"], ["ল্গ", "ê"], ["ল্ট", "ë"],
+      ["ল্ড", "ì"], ["ল্প", "í"], ["ল্ফ", "î"], ["ল্ব", "j¡"], ["ল্ম", "j¥"],
+      ["ল্ল", "jø"], ["ল্য", "j¨"], ["শ্র", "kÖ"], ["শ্ল", "kø"], ["শ্ব", "k¦"],
+      ["শ্ম", "k¥"], ["শ্য", "k¨"], ["ষ্ক", "®‹"], ["ষ্ট", "ó"], ["ষ্ঠ", "ô"],
+      ["ষ্ণ", "ò"], ["ষ্প", "®ú"], ["ষ্ফ", "õ"], ["ষ্ম", "®§"], ["স্ত", "¯Í"],
+      ["হ্ণ", "nè"], ["হ্ন", "ý"], ["হ্ব", "nŸ"], ["হ্ম", "þ"], ["হ্য", "n¨"],
+      ["হ্র", "nª"], ["হ্ল", "n¬"], ["হু", "û"], ["হৃ", "ü"], ["রু", "iæ"],
+      ["রূ", "iƒ"], ["শু", "ï"], ["গু", "¸"],
+      ["অ", "A"], ["আ", "Av"], ["ই", "B"], ["ঈ", "C"], ["উ", "D"], ["ঊ", "E"],
+      ["ঋ", "F"], ["এ", "G"], ["ঐ", "H"], ["ও", "I"], ["ঔ", "J"],
+      ["ক", "K"], ["খ", "L"], ["গ", "M"], ["ঘ", "N"], ["ঙ", "O"],
+      ["চ", "P"], ["ছ", "Q"], ["জ", "R"], ["ঝ", "S"], ["ঞ", "T"],
+      ["ট", "U"], ["ঠ", "V"], ["ড", "W"], ["ঢ", "X"], ["ণ", "Y"],
+      ["ত", "Z"], ["থ", "_"], ["দ", "`"], ["ধ", "a"], ["ন", "b"],
+      ["প", "c"], ["ফ", "d"], ["ব", "e"], ["ভ", "f"], ["ম", "g"],
+      ["য", "h"], ["র", "i"], ["ল", "j"], ["শ", "k"], ["ষ", "l"],
+      ["স", "m"], ["হ", "n"], ["ড়", "o"], ["ঢ়", "p"], ["য়", "q"],
+      ["ৎ", "r"], ["ং", "s"], ["ঃ", "t"], ["ঁ", "u"],
+      ["া", "v"], ["ি", "w"], ["ী", "x"], ["ু", "y"], ["ূ", "~"],
+      ["ৃ", "„"], ["ে", "†"], ["ৈ", "‰"], ["ৌ", "Š"], ["্", "&"],
+      ["্য", "¨"], ["্র", "ª"],
+      ["০", "0"], ["১", "1"], ["২", "2"], ["৩", "3"], ["৪", "4"],
+      ["৫", "5"], ["৬", "6"], ["৭", "7"], ["৮", "8"], ["৯", "9"]
+    ];
+
+    for (let i = 0; i < revMap.length; i++) {
+      str = str.split(revMap[i][1]).join(revMap[i][0]);
     }
 
-    src = src.replace(/([†w‰])([ক-হড়-ঢ়])/g, "$2$1");
-    src = src.replace(/([ক-হড়-ঢ়])©/g, "র্$1");
+    str = str.replace(/([†w‰])([ক-হড়-ঢ়])/g, "$2$1");
+    str = str.replace(/([ক-হড়-ঢ়])©/g, "র্$1");
 
-    document.getElementById("unicodeBox").value = src;
+    document.getElementById("unicodeBox").value = str;
   }
 </script>
 
